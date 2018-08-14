@@ -1,0 +1,12 @@
+.toggle-all {
+    background-color: #333; 
+    border: 2px solid steelblue; 
+    color: #fff;
+}
+
+.well-custom {
+    background-color: #333;
+    color: steelblue;
+    border: none;
+    text-align: center;
+}

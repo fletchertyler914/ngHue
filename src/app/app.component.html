@@ -1,20 +1,64 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<nav class="navbar navbar-expand-lg navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">SmartHome</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active">
+        <a href="#">Dashboard</a>
+      </li>
+    </ul>
+  </div>
+</nav>
 
+<div class="container">
+  <div class="col-sm-6 col-sm-offset-3">
+
+    <div>
+      <h2 style="display: inline-block; color: #fff">Dashboard </h2>
+      <button type="button" class="btn btn-default btn-sm pull-right" style="margin-top: 24px;" (click)="getHeartbeat()">
+          <span class="glyphicon glyphicon-heart"></span> Heartbeat 
+      </button>
+
+      <div class="well well-sm well-custom" *ngIf="heartBeat">{{heartBeat.response}}</div>
+    </div>
+
+  </div>
+
+  <div class="col-sm-6 col-sm-offset-3">
+
+    <accordion>
+      <accordion-group *ngFor="let group of lightGroups" class="panel-heading-custom">
+
+        <button class="btn btn-link btn-block" accordion-heading>
+          <div style="text-align: center; color: #fff;">{{group.name}}</div>
+        </button>
+
+        <button type="button" class="btn btn-primary btn-block toggle-all" (click)="toggleLightGroup(group.id)">
+          Toggle All {{group.name}} Lights
+        </button>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Light Name</th>
+              <th scope="col">State</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let light of group.formattedLights">
+            <tr>
+              <th scope="row">{{light.name}}</th>
+              <td>
+                <button type="button" class="btn btn-primary btn-block" style="margin-bottom: 10px; background-color: steelblue;" (click)="toggleLight(light.id); light.state.on = !light.state.on">
+                  <div *ngIf="light.state.on">Turn Off</div>
+                  <div *ngIf="!light.state.on">Turn On</div>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </accordion-group>
+    </accordion>
+
+  </div>
+</div>

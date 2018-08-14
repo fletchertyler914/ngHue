@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
+body {
+    background-color: black;
+}
+
+.panel {
+    border: 0.5px solid steelblue !important;
+}
+.panel-heading {
+    background-color: #333 !important;
+}
+
+.panel-body {
+    background-color: #000;
+    color: #fff;
+    font-size: 1.2rem;
+}
